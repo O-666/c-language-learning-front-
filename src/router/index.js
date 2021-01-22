@@ -8,23 +8,46 @@ const routes = [
   {
     path: '/',
     name: 'Login',
+    meta:{},
     component: Login
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
-    path: '/index',
-    name: 'Index',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Index.vue')
+    path: '/home',
+    name: 'Home',
+    meta:{title:'主页'},
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
+    children:[
+      {
+        path:'/chapterManagement',
+        meta:'章节管理',
+        component:()=>import('../components/ChapterManagement.vue')
+      },
+      {
+        path:'/knowledgePointManagement',
+        meta:'知识点管理',
+        component:()=>import('../components/KnowledgePointManagement.vue')
+      },
+      {
+        path:'/materialManagement',
+        meta:'资料管理',
+        component:()=>import('../components/MaterialManagement.vue')
+      },
+      {
+        path:'/questionBankManagement',
+        meta:'题库管理',
+        component:()=>import('../components/QuestionBankManagement.vue')
+      },
+      {
+        path:'/algorithmManagement',
+        meta:'算法管理',
+        component:()=>import('../components/AlgorithmManagement.vue')
+      },
+      {
+        path:'/tags',
+        meta:'标签',
+        component:()=>import('../views/Tags.vue')
+      }
+    ]
   }
 ]
 

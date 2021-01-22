@@ -1,5 +1,5 @@
 <template>
-  <el-container id="app">
+  <el-container class="main">
     <el-main>
       <div class="box-card">
         <div class="login_left">
@@ -177,7 +177,7 @@ export default {
             }
           }
           if (isLogin === true) {
-            this.$router.push("/About");
+            this.$router.push("/Home");
           } else {
             alert("用户名或密码错误");
           }
