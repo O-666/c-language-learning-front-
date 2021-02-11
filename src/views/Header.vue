@@ -13,17 +13,53 @@
         <el-avatar :size="35" :src="require('../assets/images/bg.jpg')" />
       </div>
       <!-- 用户名下拉菜单 -->
-      <el-dropdown trigger="click">
+      <el-dropdown trigger="click" @command="handleCommand">
         <span class="el-dropdown-link">
-          admin<i class="el-icon-caret-bottom"></i>
+         {{userName}}<i class="el-icon-caret-bottom"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>个人中心</el-dropdown-item>
-          <el-dropdown-item divided>退出登录</el-dropdown-item>
+          <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </el-header>
 </template>
+<script>
+import eventBus from './EventBus';
+export default {
+    data(){
+        return{
+            collapse: false,
+            username: 'user'
+        }
+    },
+    computed:{
+       userName() {
+            let userName = localStorage.getItem('ms_username');
+            return userName ? userName : this.username;
+        }
+    },
+    methods:{
+      // 用户名下拉菜单选择事件
+        handleCommand(command) {
+            if (command == 'loginout') {
+                localStorage.removeItem('ms_username');
+                this.$router.push('/login');
+            }
+        },
+        // 侧边栏折叠
+        collapseChage() {
+            this.collapse = !this.collapse;
+            eventBus.$emit('collapse', this.collapse);
+        }
+    },
+        mounted() {
+        if (document.body.clientWidth < 1500) {
+            this.collapseChage();
+        }
+    }
+}
+</script>
 <style scoped>
 .header {
     position: relative;
@@ -57,26 +93,3 @@
     font-size: 12px;
   }
 </style>
-<script>
-import eventBus from './EventBus';
-export default {
-    data(){
-        return{
-            collapse: false,
-            username: 'user'
-        }
-    },
-    methods:{
-        // 侧边栏折叠
-        collapseChage() {
-            this.collapse = !this.collapse;
-            eventBus.$emit('collapse', this.collapse);
-        }
-    },
-        mounted() {
-        if (document.body.clientWidth < 1500) {
-            this.collapseChage();
-        }
-    }
-}
-</script>

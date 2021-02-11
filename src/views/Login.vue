@@ -177,7 +177,8 @@ export default {
             }
           }
           if (isLogin === true) {
-            this.$router.push("/Home");
+            localStorage.setItem('ms_username', this.ruleForm.userName);
+            this.$router.push("/");
           } else {
             alert("用户名或密码错误");
           }

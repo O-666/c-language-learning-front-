@@ -35,7 +35,7 @@ import eventBus from './EventBus';
 export default {
   data(){
     return{
-      tagList:[],
+      tagsList:[],
       collapse:false
     };
   },

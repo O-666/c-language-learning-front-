@@ -6,7 +6,7 @@
             :collapse="collapse"
             background-color="#E0E0E0"
             text-color="#333"
-            active-text-color="#66a9ec"
+            active-text-color="#409EFF"
             unique-opened
             router
         >
@@ -55,6 +55,11 @@ export default {
         return {
             collapse: false,
             items: [
+                {
+                    icon: 'el-icon-house',
+                    index: 'index',
+                    title: '首页'
+                },
                 {
                     icon: 'el-icon-wind-power',
                     index: 'chapterManagement',

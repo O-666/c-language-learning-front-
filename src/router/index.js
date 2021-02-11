@@ -7,44 +7,52 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Login',
-    meta:{},
+    redirect: '/index'
+  },
+  {
+    path: '/login',
+    name: 'login',
+    meta:{title: '登录' },
     component: Login
   },
   {
-    path: '/home',
-    name: 'Home',
+    path: '/',
     meta:{title:'主页'},
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
     children:[
       {
+        path:'/index',
+        meta:{title:'首页'},
+        component:()=>import('../components/Index.vue')
+      },
+      {
         path:'/chapterManagement',
-        meta:'章节管理',
+        meta:{title:'章节管理'},
         component:()=>import('../components/ChapterManagement.vue')
       },
       {
         path:'/knowledgePointManagement',
-        meta:'知识点管理',
+        meta:{title:'知识点管理'},
         component:()=>import('../components/KnowledgePointManagement.vue')
       },
       {
         path:'/materialManagement',
-        meta:'资料管理',
+        meta:{title:'资料管理'},
         component:()=>import('../components/MaterialManagement.vue')
       },
       {
         path:'/questionBankManagement',
-        meta:'题库管理',
+        meta:{title:'题库管理'},
         component:()=>import('../components/QuestionBankManagement.vue')
       },
       {
         path:'/algorithmManagement',
-        meta:'算法管理',
+        meta:{title:'算法管理'},
         component:()=>import('../components/AlgorithmManagement.vue')
       },
       {
         path:'/tags',
-        meta:'标签',
+        meta:{title:'标签'},
         component:()=>import('../views/Tags.vue')
       }
     ]
